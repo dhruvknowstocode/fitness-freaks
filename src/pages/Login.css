@@ -1,0 +1,75 @@
+/* Login.css */
+
+
+.login-container {
+  background-color: #f4f7f9; /* Light grey background for the page */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.login-form {
+  background-color: #ffffff; /* White background for the form */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.login-heading {
+  color: #2d3748; /* Dark grey text for the heading */
+  font-size: 2.5rem; /* Larger font size for better visibility */
+  font-weight: 700; /* Bold font weight for the heading */
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.login-input {
+  border: 1px solid #e2e8f0; /* Light grey border */
+  border-radius: 4px;
+  padding: 0.75rem;
+  width: 100%;
+  font-size: 1rem; /* Adjust font size for input text */
+  transition: border-color 0.3s ease;
+}
+
+.login-input:focus {
+  border-color: #3182ce; /* Blue border color on focus */
+  outline: none;
+  box-shadow: 0 0 0 1px rgba(49, 130, 206, 0.2); /* Blue shadow on focus */
+}
+
+.login-button {
+  background-color: #3182ce; /* Blue button background */
+  color: #ffffff; /* White text */
+  border-radius: 4px;
+  padding: 0.75rem;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  font-size: 1rem; /* Adjust font size for button text */
+  font-weight: 500; /* Medium font weight for button text */
+  transition: background-color 0.3s ease;
+}
+
+.login-button:hover {
+  background-color: #2b6cb0; /* Darker blue on hover */
+}
+
+.login-error {
+  color: #e53e3e; /* Red text for error messages */
+  margin-bottom: 1rem;
+  text-align: center;
+  font-weight: 500; /* Medium font weight for error messages */
+}
+
+.signup-link {
+  color: #3182ce; /* Blue link color */
+  text-decoration: none;
+  font-weight: 500; /* Medium font weight for the link */
+}
+
+.signup-link:hover {
+  color: #2b6cb0; /* Darker blue on hover */
+}
