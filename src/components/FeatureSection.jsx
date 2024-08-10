@@ -1,8 +1,8 @@
 // src/components/FeatureSection.jsx
 import React from 'react';
 
-const FeatureSection = () => (
-  <section id="feature" className="bg-gray-100 py-16">
+const FeatureSection = ({id}) => (
+  <section id={id} className="bg-gray-100 py-16">
     <div className="container mx-auto px-4 text-center">
       <h2 className="text-4xl font-bold mb-8 text-gray-800">Our Features</h2>
       <p className="text-lg mb-12 text-gray-600 max-w-3xl mx-auto">

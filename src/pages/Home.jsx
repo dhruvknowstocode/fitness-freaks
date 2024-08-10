@@ -10,7 +10,7 @@ const Home = () => (
   <div>
     <Header />
     <HeroSection />
-    <FeatureSection />
+    <FeatureSection id="features"/>
     <ContactSection />
     <Footer />
   </div>
