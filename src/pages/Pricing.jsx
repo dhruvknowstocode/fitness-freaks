@@ -6,7 +6,6 @@ import Header from '../components/Header';
 const Pricing = () => (
   <div className="bg-gray-100 min-h-screen flex flex-col">
     {/* Header */}
-    <Header />
 
     {/* Main Content */}
     <main className="flex-grow p-8">
@@ -59,7 +58,6 @@ const Pricing = () => (
     </main>
 
     {/* Footer */}
-    <Footer />
   </div>
 );
 

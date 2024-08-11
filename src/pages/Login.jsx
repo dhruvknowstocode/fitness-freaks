@@ -32,7 +32,7 @@ const Login = () => {
 
         // Clear the redirect path from localStorage
         localStorage.removeItem('redirectAfterLogin');
-        alert('Login successful! Redirecting you to the home page.');
+        alert('Login successful! Redirecting you to the previous page.');
         // Redirect to the protected page or home page
         navigate(redirectPath); // Replace with your desired route
       } else {
@@ -46,8 +46,6 @@ const Login = () => {
   };
 
   return (
-    <div className="login-container flex flex-col">
-      <Header />
       <main className="flex-grow flex items-center justify-center px-4 py-12">
         <div className="login-form w-full max-w-md">
           <h2 className="login-heading">Login</h2>
@@ -92,8 +90,6 @@ const Login = () => {
           </form>
         </div>
       </main>
-      <Footer />
-    </div>
   );
 };
 

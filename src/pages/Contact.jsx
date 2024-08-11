@@ -67,7 +67,6 @@ const Contact = () => {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <Header />
       <div className="flex-grow container mx-auto px-4 py-8 bg-gray-50 max-w-2xl">
         <h2 className="text-3xl font-bold mb-4 text-gray-900 text-center">Contact Us</h2>
         <p className="text-base mb-8 text-gray-700 text-center">
@@ -142,7 +141,6 @@ const Contact = () => {
           </a>
         </div>
       </div>
-      <Footer />
     </div>
   );
 };

@@ -7,10 +7,20 @@ const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
 
-  useEffect(() => {
+  // Function to check authentication status
+  const checkAuthStatus = () => {
     const token = localStorage.getItem('token');
     setIsLoggedIn(!!token);
+  };
+
+  useEffect(() => {
+    checkAuthStatus();  // Initial check on mount
   }, []);
+
+  useEffect(() => {
+    // Check auth status whenever the component is re-rendered
+    checkAuthStatus();
+  }, [navigate]);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -18,7 +28,7 @@ const Header = () => {
 
   const handleLogout = () => {
     localStorage.removeItem('token');
-    setIsLoggedIn(false);
+    setIsLoggedIn(false);  // Update state to reflect logout
     alert("Logging you out!!");
     navigate('/');
   };

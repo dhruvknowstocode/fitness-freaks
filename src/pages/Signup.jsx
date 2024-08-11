@@ -43,8 +43,6 @@ const Signup = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen">
-      <Header />
       <main className="flex-grow container mx-auto px-4 py-16 bg-gray-50 max-w-md">
         <h2 className="text-3xl font-bold mb-4 text-gray-900 text-center">Sign Up</h2>
         <form onSubmit={handleSubmit} className="bg-white p-8 rounded-lg shadow-lg">
@@ -112,8 +110,6 @@ const Signup = () => {
           </p>
         </form>
       </main>
-      <Footer />
-    </div>
   );
 };
 

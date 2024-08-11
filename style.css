@@ -1,0 +1,26 @@
+/* style.css */
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+header {
+  background-color: gray;
+  padding: 1rem;
+}
+
+footer {
+  background-color: gray;
+  padding: 1rem;
+  text-align: center;
+}
+
+main {
+  flex-grow: 1;
+}

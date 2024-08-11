@@ -8,11 +8,9 @@ import Footer from '../components/Footer';
 
 const Home = () => (
   <div>
-    <Header />
     <HeroSection />
     <FeatureSection id="features"/>
     <ContactSection />
-    <Footer />
   </div>
 );
 

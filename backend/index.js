@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const User = require('./models/User');
+const Goal=require('./models/Goal');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 
@@ -138,7 +139,35 @@ app.get('/api/user', verifyToken, async (req, res) => {
     }
 });
 
+app.post('/api/goals', verifyToken, async (req, res) => {
+    const { title, description, completed = false } = req.body;
 
+    try {
+        const newGoal = new Goal({
+            title,
+            description,
+            completed, // Include completed field
+            user: req.user.userId // Associate goal with the logged-in user
+        });
+
+        const savedGoal = await newGoal.save();
+        res.status(201).json(savedGoal);
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server error');
+    }
+});
+
+app.get("/api/goals",verifyToken,async (req,res)=>{
+    try{
+        const goals=await Goal.find({user:req.user.userId});
+        console.log(goals);
+        res.json(goals);
+    } catch(error){
+        console.log(error.message);
+        res.status(500).send('Server error');
+    }
+});
 
 app.get("/", (req, res) => {
     res.send("hello");

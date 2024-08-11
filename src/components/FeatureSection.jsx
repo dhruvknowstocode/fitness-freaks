@@ -1,7 +1,9 @@
 // src/components/FeatureSection.jsx
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-const FeatureSection = ({id}) => (
+
+const FeatureSection = ({ id }) => (
   <section id={id} className="bg-gray-100 py-16">
     <div className="container mx-auto px-4 text-center">
       <h2 className="text-4xl font-bold mb-8 text-gray-800">Our Features</h2>
@@ -9,7 +11,7 @@ const FeatureSection = ({id}) => (
         Discover the amazing features of our app that will help you stay on track and achieve your fitness goals.
       </p>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-        <div className="feature-item p-8 bg-white rounded-lg shadow-md">
+        <Link to="/goal-tracking" className="feature-item p-8 bg-white rounded-lg shadow-md">
           <div className="mb-6">
             <img
               src="https://plus.unsplash.com/premium_photo-1682309772037-8da49abb2b84?q=80&w=1824&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
@@ -21,7 +23,7 @@ const FeatureSection = ({id}) => (
           <p className="text-gray-600">
             Set and track your fitness goals with ease, and stay motivated as you see your progress over time.
           </p>
-        </div>
+        </Link>
         <div className="feature-item p-8 bg-white rounded-lg shadow-md">
           <div className="mb-6">
             <img
