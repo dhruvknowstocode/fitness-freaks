@@ -137,6 +137,84 @@ const workoutPlans = [
             'Toe Touches'
         ]
     },
+    {
+        goal: 'General Fitness',
+        level: 'Beginner',
+        frequency: '3 days/week',
+        preferences: ['Cardio', 'Strength', 'Core'],
+        exercises: [
+            'Jumping Jacks',
+            'Bodyweight Squats',
+            'Push-ups',
+            'Sit-ups',
+            'Plank'
+        ]
+    },
+    {
+        goal: 'Toning',
+        level: 'Intermediate',
+        frequency: '4 days/week',
+        preferences: ['Strength', 'Flexibility'],
+        exercises: [
+            'Lunges',
+            'Dumbbell Rows',
+            'Russian Twists',
+            'Standing Forward Bend',
+            'Seated Forward Bend'
+        ]
+    },
+    {
+        goal: 'Speed & Agility',
+        level: 'Advanced',
+        frequency: '4 days/week',
+        preferences: ['Cardio', 'Plyometrics'],
+        exercises: [
+            'Burpees',
+            'Interval Sprints',
+            'High Knees',
+            'Burpee Box Jumps',
+            'Clap Push-ups'
+        ]
+    },
+    {
+        goal: 'Recovery & Relaxation',
+        level: 'Beginner',
+        frequency: '2 days/week',
+        preferences: ['Flexibility'],
+        exercises: [
+            'Child’s Pose',
+            'Cat-Cow Stretch',
+            'Seated Forward Bend',
+            'Butterfly Stretch',
+            'Downward Dog'
+        ]
+    },
+    {
+        goal: 'Total Body Conditioning',
+        level: 'Intermediate',
+        frequency: '4 days/week',
+        preferences: ['Strength', 'Cardio'],
+        exercises: [
+            'Deadlifts',
+            'Bodyweight Squats',
+            'Cycling',
+            'Russian Twists',
+            'Mountain Climbers'
+        ]
+    },
+    {
+        goal: 'Power & Strength',
+        level: 'Advanced',
+        frequency: '5 days/week',
+        preferences: ['Strength', 'Plyometrics'],
+        exercises: [
+            'Leg Press',
+            'Deadlifts',
+            'Box Jumps',
+            'Clap Push-ups',
+            'Burpee Box Jumps'
+        ]
+    },
 ];
 
 async function main() {

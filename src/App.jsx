@@ -11,6 +11,7 @@ import Pricing from './pages/Pricing';
 import GoalTracking from './pages/GoalTracking';
 import PrivateRoute from './components/PrivateRoute';
 import WorkoutPlans from './pages/WorkoutPlans';
+import AllWorkoutPlans from './pages/AllWorkoutPlans';
 
 const App = () => (
   <>
@@ -23,6 +24,7 @@ const App = () => (
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/pricing" element={<Pricing />} />
+          <Route path="/all-plans" element={<AllWorkoutPlans />} />
           <Route path="/goal-tracking" element={<PrivateRoute element={GoalTracking} />} />
           <Route path="/workout-plans" element={<PrivateRoute element={WorkoutPlans} />} />
         </Routes>
