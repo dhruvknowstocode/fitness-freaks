@@ -3,7 +3,9 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const User = require('./models/User');
-const Goal=require('./models/Goal');
+const Goal = require('./models/Goal');
+const Exercise = require('./models/Exercise'); // Adjust paths as needed
+const WorkoutPlan = require('./models/WorkoutPlan'); // Adjust paths as needed  
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 require('dotenv').config();
@@ -125,13 +127,13 @@ app.get('/api/user', verifyToken, async (req, res) => {
     try {
         // Find the user by the ID stored in req.user
         const user = await User.findById(req.user.userId);
-        
+
         if (!user) {
             return res.status(404).json({ msg: 'User not found' });
         }
-        
+
         // Return the user data
-        res.json({ 
+        res.json({
             name: user.name,
             email: user.email,
             phoneNumber: user.phoneNumber
@@ -161,12 +163,12 @@ app.post('/api/goals', verifyToken, async (req, res) => {
     }
 });
 
-app.get("/api/goals",verifyToken,async (req,res)=>{
-    try{
-        const goals=await Goal.find({user:req.user.userId});
+app.get("/api/goals", verifyToken, async (req, res) => {
+    try {
+        const goals = await Goal.find({ user: req.user.userId });
         // console.log(goals);
         res.json(goals);
-    } catch(error){
+    } catch (error) {
         console.log(error.message);
         res.status(500).send('Server error');
     }
@@ -176,24 +178,24 @@ app.get("/api/goals",verifyToken,async (req,res)=>{
 app.put('/api/goals/:id', verifyToken, async (req, res) => {
     const { title, description, completed } = req.body;
     const { id } = req.params;
-  
+
     try {
-      // Find the goal by id and update it
-      const updatedGoal = await Goal.findByIdAndUpdate(id, { title, description, completed }, { new: true });
-      if (!updatedGoal) {
-        return res.status(404).json({ msg: 'Goal not found' });
-      }
-      res.json(updatedGoal);
+        // Find the goal by id and update it
+        const updatedGoal = await Goal.findByIdAndUpdate(id, { title, description, completed }, { new: true });
+        if (!updatedGoal) {
+            return res.status(404).json({ msg: 'Goal not found' });
+        }
+        res.json(updatedGoal);
     } catch (err) {
-      console.error(err.message);
-      res.status(500).send('Server error');
+        console.error(err.message);
+        res.status(500).send('Server error');
     }
-  });
-  
+});
+
 // Delete a goal
 app.delete('/api/goals/:id', verifyToken, async (req, res) => {
     const { id } = req.params;
-  
+
     try {
         // Find the goal by id and delete it
         const deletedGoal = await Goal.findByIdAndDelete(id);
@@ -206,6 +208,65 @@ app.delete('/api/goals/:id', verifyToken, async (req, res) => {
         res.status(500).send('Server error');
     }
 });
+
+app.get('/exercises', async (req, res) => {
+    try {
+        const exercises = await Exercise.find();
+        res.json(exercises);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+});
+
+// app.get('/workout-plan', async (req, res) => {
+//     try {
+//       const workoutPlans = await WorkoutPlan.find().populate('exercises');
+//       res.json(workoutPlans);
+//     } catch (err) {
+//       res.status(500).json({ message: err.message });
+//     }
+//   });
+
+app.get('/exercises/:id', async (req, res) => {
+    try {
+        const exercise = await Exercise.findById(req.params.id);
+        console.log(exercise);
+        if (!exercise) {
+            return res.status(404).json({ message: 'Exercise not found' });
+        }
+        res.json(exercise);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+});
+
+
+app.post('/generate-plan', async (req, res) => {
+    const { goal, level, frequency, preferences } = req.body;
+
+    if (!goal || !level || !frequency || !preferences) {
+        return res.status(400).json({ message: 'Invalid request data' });
+    }
+
+    try {
+        // Find exercises based on preferences
+        const exercises = await Exercise.find({ type: preferences });
+        // console.log(exercises);
+        // Create workout plan
+        const examplePlan = {
+            goal,
+            level,
+            frequency,
+            preferences,
+            exercises: exercises.map(exercise => exercise._id) // Store only IDs
+        };
+        console.log(examplePlan);
+        res.json(examplePlan); // Return the complete plan with references populated
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+});
+
 
 
 app.get("/", (req, res) => {

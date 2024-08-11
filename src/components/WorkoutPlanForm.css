@@ -1,0 +1,128 @@
+/* Container for the form */
+.form-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial', sans-serif;
+  }
+  
+  /* Heading styling */
+  .form-heading {
+    font-size: 24px;
+    color: #333;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  
+  /* Description styling */
+  .form-description {
+    font-size: 16px;
+    color: #555;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  /* Input and select field styling */
+  input[type="text"], select {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+  }
+  
+  /* Label styling */
+  label {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 8px;
+  }
+  
+  /* Button styling */
+  button[type="submit"] {
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s ease;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #45a049;
+  }
+  
+  /* Responsive styling */
+  @media (max-width: 768px) {
+    .form-container {
+      padding: 15px;
+    }
+  
+    input[type="text"], select {
+      padding: 8px;
+    }
+  
+    button[type="submit"] {
+      padding: 12px 18px;
+      font-size: 16px;
+    }
+  }
+/* Enhanced error message styling */
+.form-error {
+  color: #d9534f; /* Error text color */
+  background-color: #fcebea; /* Light red background for error box */
+  padding: 8px; /* Increased padding for better readability */
+  border-left: 4px solid #d9534f; /* Red left border for emphasis */
+  border-radius: 4px; /* Rounded corners */
+  margin-top: 8px; /* Spacing between input and error message */
+  font-size: 0.875rem; /* Slightly smaller font for error message */
+  line-height: 1.2; /* Better line height for readability */
+}
+
+/* Red border for input fields with errors */
+.border-red-500 {
+  border-color: #d9534f; /* Red border color for error */
+  box-shadow: 0 0 5px rgba(217, 83, 79, 0.5); /* Subtle shadow for emphasis */
+}
+
+/* Enhanced input field styling */
+input[type="text"],
+select {
+  border: 1px solid #ccc; /* Default border */
+  padding: 10px; /* Increased padding for better user experience */
+  border-radius: 4px; /* Rounded corners */
+  font-size: 1rem; /* Slightly larger font size */
+  transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for border and shadow */
+}
+
+input[type="text"]:focus,
+select:focus {
+  border-color: #007bff; /* Blue border on focus */
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Blue shadow on focus */
+  outline: none; /* Remove default focus outline */
+}
+
+/* Styling the submit button */
+button[type="submit"] {
+  background-color: #007bff; /* Blue background for submit button */
+  border: none; /* Remove default border */
+  padding: 10px 20px; /* Padding for better appearance */
+  font-size: 1rem; /* Slightly larger font size */
+  border-radius: 4px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s ease; /* Smooth background transition */
+}
+
+button[type="submit"]:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+

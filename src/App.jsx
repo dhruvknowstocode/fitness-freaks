@@ -10,6 +10,7 @@ import Signup from './pages/Signup';
 import Pricing from './pages/Pricing';
 import GoalTracking from './pages/GoalTracking';
 import PrivateRoute from './components/PrivateRoute';
+import WorkoutPlans from './pages/WorkoutPlans';
 
 const App = () => (
   <>
@@ -23,6 +24,7 @@ const App = () => (
           <Route path="/signup" element={<Signup />} />
           <Route path="/pricing" element={<Pricing />} />
           <Route path="/goal-tracking" element={<PrivateRoute element={GoalTracking} />} />
+          <Route path="/workout-plans" element={<PrivateRoute element={WorkoutPlans} />} />
         </Routes>
       </main>
       <Footer />
