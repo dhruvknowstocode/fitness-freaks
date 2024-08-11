@@ -12,6 +12,7 @@ const GoalForm = ({ onAddGoal }) => {
       setTitle('');
       setDescription('');
       setCompleted(false);
+      alert("Goal added successfully!!")
     }
   };
 

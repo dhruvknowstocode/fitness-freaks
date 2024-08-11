@@ -13,7 +13,9 @@ const PORT = 8080;
 app.use(cors());
 app.use(bodyParser.json());
 
-const mongourl = 'mongodb://127.0.0.1:27017/fitness-tracker';
+// const mongourl = 'mongodb://127.0.0.1:27017/fitness-tracker';
+const mongourl = 'mongodb+srv://dhruv2516403221:DAGrzE0WT3B8laBh@cluster0.ysvcc.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
+
 const jwtSecret = 'viratkohli';
 
 
@@ -168,6 +170,42 @@ app.get("/api/goals",verifyToken,async (req,res)=>{
         res.status(500).send('Server error');
     }
 });
+
+// Update a goal
+app.put('/api/goals/:id', verifyToken, async (req, res) => {
+    const { title, description, completed } = req.body;
+    const { id } = req.params;
+  
+    try {
+      // Find the goal by id and update it
+      const updatedGoal = await Goal.findByIdAndUpdate(id, { title, description, completed }, { new: true });
+      if (!updatedGoal) {
+        return res.status(404).json({ msg: 'Goal not found' });
+      }
+      res.json(updatedGoal);
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).send('Server error');
+    }
+  });
+  
+// Delete a goal
+app.delete('/api/goals/:id', verifyToken, async (req, res) => {
+    const { id } = req.params;
+  
+    try {
+        // Find the goal by id and delete it
+        const deletedGoal = await Goal.findByIdAndDelete(id);
+        if (!deletedGoal) {
+            return res.status(404).json({ msg: 'Goal not found' });
+        }
+        res.json({ msg: 'Goal deleted successfully' });
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server error');
+    }
+});
+
 
 app.get("/", (req, res) => {
     res.send("hello");
