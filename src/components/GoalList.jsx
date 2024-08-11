@@ -63,7 +63,7 @@ const GoalList = ({ goals, onUpdateGoal, onDeleteGoal }) => {
               </div>
               <p className="text-gray-700 mt-2">{goal.description}</p>
               <p className="text-gray-500 text-sm mt-1">
-                <strong>{goal.completed ? 'Completed At:' : 'Created At:'}</strong> {new Date(goal.createdAt).toLocaleString('en-US', {
+                <strong>Created At:</strong> {new Date(goal.createdAt).toLocaleString('en-US', {
                   year: 'numeric',
                   month: 'long',
                   day: 'numeric',

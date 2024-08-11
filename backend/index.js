@@ -6,6 +6,7 @@ const User = require('./models/User');
 const Goal=require('./models/Goal');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
+require('dotenv').config();
 
 const app = express();
 const PORT = 8080;
@@ -14,7 +15,7 @@ app.use(cors());
 app.use(bodyParser.json());
 
 // const mongourl = 'mongodb://127.0.0.1:27017/fitness-tracker';
-const mongourl = 'mongodb+srv://dhruv2516403221:DAGrzE0WT3B8laBh@cluster0.ysvcc.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
+const mongourl = process.env.MONGODB_URI;
 
 const jwtSecret = 'viratkohli';
 
@@ -163,7 +164,7 @@ app.post('/api/goals', verifyToken, async (req, res) => {
 app.get("/api/goals",verifyToken,async (req,res)=>{
     try{
         const goals=await Goal.find({user:req.user.userId});
-        console.log(goals);
+        // console.log(goals);
         res.json(goals);
     } catch(error){
         console.log(error.message);
