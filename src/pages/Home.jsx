@@ -1,15 +1,15 @@
 // src/pages/Home.jsx
 import React from 'react';
-import Header from '../components/Header';
 import HeroSection from '../components/HeroSection';
+import CarouselComponent from '../components/Carousel';
 import FeatureSection from '../components/FeatureSection';
 import ContactSection from '../components/ContactSection';
-import Footer from '../components/Footer';
 
 const Home = () => (
   <div>
     <HeroSection />
     <FeatureSection id="features"/>
+    <CarouselComponent />
     <ContactSection />
   </div>
 );

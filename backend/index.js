@@ -109,9 +109,9 @@ const verifyToken = async (req, res, next) => {
 
     try {
         const tokenValue = token.split(' ')[1];
-        console.log('Token value:', tokenValue);
+        // console.log('Token value:', tokenValue);
         const decoded = jwt.verify(tokenValue, jwtSecret);
-        console.log('Decoded token:', decoded);
+        // console.log('Decoded token:', decoded);
         req.user = decoded;
         next();
     } catch (err) {
