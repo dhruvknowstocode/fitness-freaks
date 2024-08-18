@@ -21,7 +21,7 @@ const Signup = () => {
     e.preventDefault(); // Prevents the default form submission behavior
 
     try {
-      const response = await fetch('http://localhost:8080/api/auth/register', {
+      const response = await fetch('https://fitness-freaks-wuyi.onrender.com/api/auth/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

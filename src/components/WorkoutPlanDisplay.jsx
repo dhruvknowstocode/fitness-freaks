@@ -10,7 +10,7 @@ const WorkoutPlanDisplay = ({ plan }) => {
         try {
           const responses = await Promise.all(
             plan.exercises.map(id =>
-              fetch(`http://localhost:8080/exercises/${id}`).then(res => res.json())
+              fetch(`https://fitness-freaks-wuyi.onrender.com/exercises/${id}`).then(res => res.json())
             )
           );
           setExerciseDetails(responses);

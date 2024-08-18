@@ -8,7 +8,7 @@ const AllWorkoutPlans = () => {
     useEffect(() => {
         const fetchPlans = async () => {
             try {
-                const response = await fetch("http://localhost:8080/plans");
+                const response = await fetch("https://fitness-freaks-wuyi.onrender.com/plans");
                 if (!response.ok) throw new Error('Failed to fetch plans');
                 const data = await response.json();
                 setPlans(data);

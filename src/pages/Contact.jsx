@@ -25,7 +25,7 @@ const Contact = () => {
       }
 
       try {
-        const response = await fetch('http://localhost:8080/api/user', {
+        const response = await fetch('https://fitness-freaks-wuyi.onrender.com/api/user', {
           method: 'GET',
           headers: {
             'Authorization': `Bearer ${token}`,

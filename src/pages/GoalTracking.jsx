@@ -8,7 +8,7 @@ const GoalTracking = () => {
     useEffect(() => {
         const fetchGoals = async () => {
             const token = localStorage.getItem('token'); // Get the token from localStorage
-            const response = await fetch('http://localhost:8080/api/goals', {
+            const response = await fetch('https://fitness-freaks-wuyi.onrender.com/api/goals', {
                 headers: {
                     'Authorization': `Bearer ${token}` // Add the token to the headers
                 }
@@ -21,7 +21,7 @@ const GoalTracking = () => {
 
     const addGoal = async (newGoal) => {
         const token = localStorage.getItem('token'); // Get the token from localStorage
-        const response = await fetch('http://localhost:8080/api/goals', {
+        const response = await fetch('https://fitness-freaks-wuyi.onrender.com/api/goals', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -35,7 +35,7 @@ const GoalTracking = () => {
 
     const updateGoal = async (id, updatedGoal) => {
         const token = localStorage.getItem('token'); // Get the token from localStorage
-        const response = await fetch(`http://localhost:8080/api/goals/${id}`, {
+        const response = await fetch(`https://fitness-freaks-wuyi.onrender.com/api/goals/${id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -50,7 +50,7 @@ const GoalTracking = () => {
     const deleteGoal = async (id) => {
         const token = localStorage.getItem('token'); // Get the token from localStorage
         try {
-            const response = await fetch(`http://localhost:8080/api/goals/${id}`, {
+            const response = await fetch(`https://fitness-freaks-wuyi.onrender.com/api/goals/${id}`, {
                 method: 'DELETE',
                 headers: {
                     'Authorization': `Bearer ${token}` // Add the token to the headers

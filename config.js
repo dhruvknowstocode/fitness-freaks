@@ -1,0 +1,1 @@
+const API_URL = "https://fitness-freaks-wuyi.onrender.com";

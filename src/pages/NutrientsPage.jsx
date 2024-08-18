@@ -18,7 +18,7 @@ const NutrientsPage = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('http://localhost:8080/meal-plans-and-goals');
+                const response = await fetch('https://fitness-freaks-wuyi.onrender.com/meal-plans-and-goals');
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }

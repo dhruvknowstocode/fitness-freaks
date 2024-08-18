@@ -12,7 +12,7 @@ const WorkoutPlans = () => {
     // Fetch exercises from the backend
     const fetchExercises = async () => {
       try {
-        const response = await fetch('http://localhost:8080/exercises');
+        const response = await fetch('https://fitness-freaks-wuyi.onrender.com/exercises');
         if (!response.ok) throw new Error('Failed to fetch exercises');
         const data = await response.json();
         setExercises(data);
@@ -26,7 +26,7 @@ const WorkoutPlans = () => {
 
   const generatePlan = async (criteria) => {
     try {
-      const response = await fetch('http://localhost:8080/generate-plan', {
+      const response = await fetch('https://fitness-freaks-wuyi.onrender.com/generate-plan', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
