@@ -1,13 +1,16 @@
-// src/components/ContactSection.jsx
 import React from 'react';
 import { Link } from 'react-router-dom';
 
 const ContactSection = () => (
-  <section id="contact" className="bg-blue-100 py-16">
+  <section id="contact" className="bg-gray-200 py-16">
     <div className="container mx-auto px-4 text-center">
-      <h2 className="text-3xl font-bold mb-2">Contact Us</h2>
-      <p className="text-lg mb-6">Get in touch with us for any questions or support.</p>
-      <Link to="/contact" className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition">Contact Us</Link>
+      <h2 className="text-4xl font-extrabold mb-4 text-gray-800">Contact Us</h2>
+      <p className="text-lg mb-8 text-gray-600">
+        If you have any questions or need support, feel free to reach out to us. We're here to help!
+      </p>
+      <Link to="/contact" className="bg-purple-600 text-white px-6 py-3 rounded-lg shadow-lg hover:bg-purple-700 transition-transform transform hover:scale-105">
+        Get in Touch
+      </Link>
     </div>
   </section>
 );
