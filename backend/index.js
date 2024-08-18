@@ -6,6 +6,8 @@ const User = require('./models/User');
 const Goal = require('./models/Goal');
 const Exercise = require('./models/Exercise'); // Adjust paths as needed
 const WorkoutPlan = require('./models/WorkoutPlan'); // Adjust paths as needed  
+const MealPlanAndGoals = require('./models/MealPlanAndGoals');
+
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 require('dotenv').config();
@@ -268,7 +270,18 @@ app.post('/generate-plan', async (req, res) => {
     }
 });
 
-
+app.get('/meal-plans-and-goals', async (req, res) => {
+    try {
+        const data = await MealPlanAndGoals.find({});
+        console.log(data);
+        if (data.length === 0) {  // Check if the array is empty
+            return res.status(404).json({ message: 'No data found' });
+        }
+        res.json(data);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
 
 app.get("/", (req, res) => {
     res.send("hello");

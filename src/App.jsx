@@ -12,6 +12,9 @@ import GoalTracking from './pages/GoalTracking';
 import PrivateRoute from './components/PrivateRoute';
 import WorkoutPlans from './pages/WorkoutPlans';
 import AllWorkoutPlans from './pages/AllWorkoutPlans';
+import NutrientsPage from './pages/NutrientsPage';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import TermsOfService from './pages/TermsOfService';
 
 const App = () => (
   <>
@@ -27,6 +30,9 @@ const App = () => (
           <Route path="/all-plans" element={<AllWorkoutPlans />} />
           <Route path="/goal-tracking" element={<PrivateRoute element={GoalTracking} />} />
           <Route path="/workout-plans" element={<PrivateRoute element={WorkoutPlans} />} />
+          <Route path="/nutrients" element={<PrivateRoute element={NutrientsPage} />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/terms-of-service" element={<TermsOfService />} />
         </Routes>
       </main>
       <Footer />

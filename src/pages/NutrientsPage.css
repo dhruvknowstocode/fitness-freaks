@@ -1,0 +1,215 @@
+/* General styles */
+.container2 {
+    padding: 2rem 1rem;
+    background-size: cover;
+    background-position: center;
+    min-height: 84vh;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+.grid {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Adjusted for responsiveness */
+    justify-content: center;
+    align-items: start;
+}
+
+.meal-plan-card, .pie-chart-card {
+    background-color: #fdfdfd;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.95);
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 300px; /* Consider reducing this on smaller screens */
+    max-width: 100%;
+    width: 100%; /* Full width */
+    box-sizing: border-box;
+    border: 2px solid #1d4ed8;
+}
+
+.meal-plan-title {
+    font-size: 2rem;
+    color: #1d4ed8;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.meal-plan-goals, .meal-plan-meals {
+    margin: 1rem 0;
+    background-color: #f3f4f6;
+    padding: 1rem;
+    border-radius: 10px;
+    border-left: 4px solid #1d4ed8;
+}
+
+.meal-plan-goals p, .meal-plan-meals p, .meal-plan-meals h3 {
+    margin: 0.5rem 0;
+    font-weight: 600;
+    color: #374151;
+}
+
+.meal-plan-goals p strong, .meal-plan-meals p strong {
+    color: #1d4ed8;
+}
+
+.meal-title {
+    font-size: 1.4rem;
+    color: #1d4ed8;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+}
+
+.advice {
+    margin-top: 1.5rem;
+    font-size: 1rem;
+    color: #374151;
+    background-color: #f9fafb;
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
+    border: 2px solid #2563eb;
+}
+
+.meal-plan-card:hover, .pie-chart-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+    border-color: #2563eb;
+}
+
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+.pagination-button {
+    padding: 0.5rem 1.2rem;
+    background-color: #1d4ed8;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin: 0 0.75rem;
+    transition: background-color 0.3s;
+    font-size: 1rem;
+}
+
+.pagination-button:disabled {
+    background-color: #cbd5e1;
+    cursor: not-allowed;
+}
+
+.pagination-button:hover:not(:disabled) {
+    background-color: #2563eb;
+}
+
+.page-info {
+    padding: 0.5rem 1rem;
+    background-color: #f3f4f6;
+    color: #374151;
+    border-radius: 6px;
+    font-size: 1rem;
+}
+
+/* Media Queries for responsiveness */
+@media (max-width: 1200px) {
+    .grid {
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .meal-plan-card, .pie-chart-card {
+        min-height: auto; /* Adjust height for smaller screens */
+        padding: 1rem; /* Reduced padding */
+    }
+
+    .meal-plan-title {
+        font-size: 1.5rem;
+    }
+
+    .meal-title {
+        font-size: 1.2rem;
+    }
+
+    .advice {
+        font-size: 0.9rem;
+        padding: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .pagination-button {
+        padding: 0.4rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    .page-info {
+        font-size: 0.9rem;
+        padding: 0.4rem 0.8rem;
+    }
+}
+
+.pie-title {
+    margin-bottom: 2rem;
+}
+
+/* NutrientsPage.css */
+
+.streak-info {
+    margin-top: 20px;
+    padding: 20px;
+    background: #e2e8f0;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.streak-info h2 {
+    font-size: 1.5em;
+    color: #4ade80;
+}
+
+.streak-info p {
+    font-size: 1.2em;
+    color: #1d4ed8;
+}
+.meal-plan-card.selected {
+    border: 2px solid #4ade80; /* Highlight selected plan */
+    background-color: #f0f9f4; /* Lighter background for selected plan */
+}
+
+/* Timer Section */
+.timer {
+    background-color: #1d4ed8; /* Match the theme color */
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.timer h2 {
+    font-size: 1.5em;
+    margin: 0;
+}
+
+/* Adjust font size for smaller screens */
+@media (max-width: 768px) {
+    .timer h2 {
+        font-size: 1.2em;
+    }
+}
+
+

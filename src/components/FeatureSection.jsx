@@ -37,7 +37,7 @@ const FeatureSection = ({ id }) => (
             Access a variety of workout plans tailored to your fitness level and goals, from beginner to advanced.
           </p>
         </Link>
-        <div className="feature-item p-8 bg-white rounded-lg shadow-md">
+        <Link to="/nutrients" className="feature-item p-8 bg-white rounded-lg shadow-md">
           <div className="mb-6">
             <img
               src="https://images.unsplash.com/photo-1466637574441-749b8f19452f?q=80&w=1780&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
@@ -47,9 +47,9 @@ const FeatureSection = ({ id }) => (
           </div>
           <h3 className="text-2xl font-semibold mb-2 text-gray-800">Nutrition Guidance</h3>
           <p className="text-gray-600">
-            Receive personalized nutrition advice and meal plans to complement your workout routine and help you achieve your goals.
+            Receive personalized nutrition advice and meal plans to help you achieve your goals.
           </p>
-        </div>
+        </Link>
       </div>
     </div>
   </section>

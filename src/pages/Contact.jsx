@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import Footer from '../components/Footer';
-import Header from '../components/Header';
 
 const Contact = () => {
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
-
   const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: '',
+  });
+  const [formErrors, setFormErrors] = useState({
     name: '',
     email: '',
     message: '',
@@ -51,6 +53,32 @@ const Contact = () => {
     fetchUserData();
   }, []);
 
+  const validateForm = () => {
+    let isValid = true;
+    let errors = { name: '', email: '', message: '' };
+
+    if (!formData.name.trim()) {
+      errors.name = 'Name is required';
+      isValid = false;
+    }
+    
+    if (!formData.email.trim()) {
+      errors.email = 'Email is required';
+      isValid = false;
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      errors.email = 'Email address is invalid';
+      isValid = false;
+    }
+
+    if (!formData.message.trim()) {
+      errors.message = 'Message is required';
+      isValid = false;
+    }
+
+    setFormErrors(errors);
+    return isValid;
+  };
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -61,8 +89,16 @@ const Contact = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission logic here
-    console.log('Form submitted with data:', formData);
+
+    if (validateForm()) {
+      const { name, email, message } = formData;
+      const subject = encodeURIComponent('Contact Form Submission');
+      const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nMessage: ${message}`);
+      const mailtoLink = `mailto:dhruvjain2424@gmail.com?subject=${subject}&body=${body}`;
+
+      // Redirect to the mailto link
+      window.location.href = mailtoLink;
+    }
   };
 
   return (
@@ -87,10 +123,11 @@ const Contact = () => {
                 name="name"
                 value={formData.name}
                 onChange={handleInputChange}
-                className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className={`w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 ${formErrors.name ? 'focus:ring-red-500' : 'focus:ring-blue-500'}`}
                 placeholder="Your Name"
                 required
               />
+              {formErrors.name && <p className="text-red-600 text-sm mt-1">{formErrors.name}</p>}
             </div>
             <div className="mb-4">
               <label htmlFor="email" className="block text-gray-800 mb-1">Email</label>
@@ -100,10 +137,11 @@ const Contact = () => {
                 name="email"
                 value={formData.email}
                 onChange={handleInputChange}
-                className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className={`w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 ${formErrors.email ? 'focus:ring-red-500' : 'focus:ring-blue-500'}`}
                 placeholder="Your Email"
                 required
               />
+              {formErrors.email && <p className="text-red-600 text-sm mt-1">{formErrors.email}</p>}
             </div>
             <div className="mb-4">
               <label htmlFor="message" className="block text-gray-800 mb-1">Message</label>
@@ -112,11 +150,12 @@ const Contact = () => {
                 name="message"
                 value={formData.message}
                 onChange={handleInputChange}
-                className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className={`w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 ${formErrors.message ? 'focus:ring-red-500' : 'focus:ring-blue-500'}`}
                 rows="4"
                 placeholder="Your Message"
                 required
               ></textarea>
+              {formErrors.message && <p className="text-red-600 text-sm mt-1">{formErrors.message}</p>}
             </div>
             <button
               type="submit"

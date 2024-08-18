@@ -8,13 +8,13 @@ const Footer = () => (
             </p>
             <ul className="flex justify-center space-x-4 mt-2">
                 <li>
-                    <a href="#privacy" className="hover:underline">Privacy Policy</a>
+                    <a href="/privacy-policy" className="hover:underline">Privacy Policy</a>
                 </li>
                 <li>
-                    <a href="#terms" className="hover:underline">Terms of Service</a>
+                    <a href="/terms-of-service" className="hover:underline">Terms of Service</a>
                 </li>
                 <li>
-                    <a href="#contact" className="hover:underline">Contact</a>
+                    <a href="/contact" className="hover:underline">Contact</a>
                 </li>
             </ul>
         </div>
