@@ -1,7 +1,8 @@
+// src/pages/Login.jsx
 import React, { useState } from 'react';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import './Login.css'; // Import the CSS file
 
 const Login = () => {
@@ -85,7 +86,7 @@ const Login = () => {
             </button>
             <p className="text-gray-600 text-center">
               Don't have an account?{' '}
-              <a href="/signup" className="signup-link">Sign Up</a>
+              <Link to="/signup" className="signup-link">Sign Up</Link>
             </p>
           </form>
         </div>

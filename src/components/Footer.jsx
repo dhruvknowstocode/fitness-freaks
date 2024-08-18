@@ -1,4 +1,6 @@
+// src/components/Footer.jsx
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Footer = () => (
     <footer className="bg-gray-800 text-white py-4">
@@ -8,13 +10,13 @@ const Footer = () => (
             </p>
             <ul className="flex justify-center space-x-4 mt-2">
                 <li>
-                    <a href="/privacy-policy" className="hover:underline">Privacy Policy</a>
+                    <Link to="/privacy-policy" className="hover:underline">Privacy Policy</Link>
                 </li>
                 <li>
-                    <a href="/terms-of-service" className="hover:underline">Terms of Service</a>
+                    <Link to="/terms-of-service" className="hover:underline">Terms of Service</Link>
                 </li>
                 <li>
-                    <a href="/contact" className="hover:underline">Contact</a>
+                    <Link to="/contact" className="hover:underline">Contact</Link>
                 </li>
             </ul>
         </div>
