@@ -120,7 +120,7 @@ const NutrientsPage = () => {
 
                 console.log(userData._id);
 
-                const updatedResponse = await fetch(`https://fitness-freaks-wuyi.onrender.com/${userData._id}`, {
+                const updatedResponse = await fetch(`https://fitness-freaks-wuyi.onrender.com/update-streak/${userData._id}`, {
                     method: 'POST',
                 });
                 if (!updatedResponse.ok) {
