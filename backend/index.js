@@ -136,9 +136,13 @@ app.get('/api/user', verifyToken, async (req, res) => {
 
         // Return the user data
         res.json({
+            _id:user._id,
             name: user.name,
             email: user.email,
-            phoneNumber: user.phoneNumber
+            phoneNumber: user.phoneNumber,
+            streak: user.streak,
+            lastStreakDate: user.lastStreakDate,  // Last date the streak was updated
+            maxStreak: user.maxStreak // Maximum streak achieved
         });
     } catch (err) {
         console.error(err.message);
@@ -280,6 +284,42 @@ app.get('/meal-plans-and-goals', async (req, res) => {
         res.json(data);
     } catch (error) {
         res.status(500).json({ message: error.message });
+    }
+});
+
+app.post('/update-streak/:userId', async (req, res) => {
+    const { userId } = req.params;
+
+    try {
+        const user = await User.findById(userId);
+
+        const today = new Date().toISOString().split('T')[0];
+        const lastStreakDate = user.lastStreakDate ? user.lastStreakDate.toISOString().split('T')[0] : null;
+
+        if (lastStreakDate === today) {
+            return res.json({ streak: user.streak, maxStreak: user.maxStreak, message: "Streak already updated today." ,lastStreakDate:user.lastStreakDate});
+        }
+
+        const yesterday = new Date();
+        yesterday.setDate(yesterday.getDate() - 1);
+
+        if (lastStreakDate === yesterday.toISOString().split('T')[0]) {
+            user.streak += 1;
+        } else {
+            user.streak = 1;  
+        }
+        user.lastStreakDate = new Date();
+
+        if (user.streak > user.maxStreak) {
+            user.maxStreak = user.streak;
+        }
+
+        await user.save();
+
+        res.json({ streak: user.streak, maxStreak: user.maxStreak });
+    } catch (error) {
+        console.error('Error updating streak:', error);
+        res.status(500).json({ message: 'Error updating streak' });
     }
 });
 

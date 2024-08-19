@@ -16,6 +16,37 @@ const NutrientsPage = () => {
     const itemsPerPage = 1;
 
     useEffect(() => {
+        const fetchInitialStreak = async () => {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                console.log('No token found');
+                return;
+            }   
+            console.log(token);
+            try {
+                const response = await fetch('http://localhost:8080/api/user', {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                    },
+                });
+                console.log(response);
+                if (response.ok) {
+                    const userData = await response.json();
+                    setStreak(userData.streak);
+                } else {
+                    setError('Failed to fetch user data');
+                }
+            } catch (err) {
+                setError('An error occurred while fetching initial streak');
+            }
+        };
+    
+        fetchInitialStreak();
+    }, []);
+    
+
+    useEffect(() => {
         const fetchData = async () => {
             try {
                 const response = await fetch('https://fitness-freaks-wuyi.onrender.com/meal-plans-and-goals');
@@ -42,17 +73,6 @@ const NutrientsPage = () => {
     }, []);
 
     useEffect(() => {
-        const today = new Date().toISOString().split('T')[0];
-        const lastDate = localStorage.getItem('lastDate');
-        const currentStreak = parseInt(localStorage.getItem('streak'), 10) || 0;
-
-        if (lastDate === today) {
-            setStreak(currentStreak);
-        } else {
-            setStreak(0);
-            localStorage.setItem('lastDate', today);
-        }
-
         // Timer to update streak
         const calculateTimeLeft = () => {
             const now = new Date();
@@ -81,37 +101,59 @@ const NutrientsPage = () => {
         }
     };
 
-    const handlePlanSelect = (planId) => {
-        const today = new Date().toISOString().split('T')[0];
-        const lastDate = localStorage.getItem('lastDate');
-        let currentStreak = parseInt(localStorage.getItem('streak'), 10) || 0;
-    
-        if (selectedPlanId === planId) {
-            // Deselecting the current plan
-            setSelectedPlanId(null);
-            if (lastDate === today) {
-                // Decrease the streak by 1
-                const newStreak = Math.max(currentStreak - 1, 0);
-                setStreak(newStreak);
-                localStorage.setItem('streak', newStreak);
-            }
-        } else {
-            // Selecting a new plan
-            setSelectedPlanId(planId);
-            if (lastDate === today) {
-                // Increase the streak by 1
-                const newStreak = currentStreak + 1;
-                setStreak(newStreak);
-                localStorage.setItem('streak', newStreak);
-            } else {
-                // Reset streak if it's a new day
-                setStreak(1);
-                localStorage.setItem('lastDate', today);
-                localStorage.setItem('streak', 1);
-            }
+    const handlePlanSelect = async (planId) => {
+        const token = localStorage.getItem('token');
+        if (!token) {
+            console.log('No token found');
         }
+        console.log(token);
+        try {
+            const response = await fetch('https://fitness-freaks-wuyi.onrender.com/api/user', {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                },
+            });
+            if (response.ok) {
+                const userData = await response.json();
+                console.log('User Data:', userData);
+
+                console.log(userData._id);
+
+                const updatedResponse = await fetch(`https://fitness-freaks-wuyi.onrender.com/${userData._id}`, {
+                    method: 'POST',
+                });
+                if (!updatedResponse.ok) {
+                    throw new Error('Failed to update streak');
+                }
+                // console.log(updatedResponse);
+                const streakData = await updatedResponse.json();
+                console.log(streakData);
+                setStreak(streakData.streak);
+                setSelectedPlanId(planId);
+            } else {
+                setError('Failed to fetch user data');
+            }
+        } catch (err) {
+            setError('An error occurred while fetching user data');
+        }
+        // const today = new Date().toISOString().split('T')[0];
+        // console.log(today);
+        // console.log(planId);
     };
-    
+
+    const getMotivationalMessage = () => {
+        if (streak === 1) {
+            return "Great start! Keep it up!";
+        } else if (streak < 7) {
+            return "You're on a roll!";
+        } else if (streak >= 7) {
+            return "Fantastic! You've hit a weekly streak!";
+        } else if (streak >= 30) {
+            return "Incredible! You're a streak master!";
+        }
+        return "Keep going! Every day counts!";
+    };
 
     const pieChartData = currentPlans.length > 0 ? {
         labels: ['Protein', 'Carbs', 'Fats'],
@@ -158,7 +200,7 @@ const NutrientsPage = () => {
                 {currentPlans.map((plan) => (
                     <div
                         key={plan._id}
-                        className={`meal-plan-card pie-chart-card ${selectedPlanId === plan._id ? 'selected' : ''}`}
+                        className={`meal-plan-card  first pie-chart-card ${selectedPlanId === plan._id ? 'selected' : ''}`}
                         onClick={() => handlePlanSelect(plan._id)}
                     >
                         <h2 className="meal-plan-title">#{currentPage} Meal Plan</h2>
@@ -216,12 +258,16 @@ const NutrientsPage = () => {
                     Next
                 </button>
             </div>
-            {selectedPlanId && (
-                <div className="streak-info">
-                    <h2>Streak: {streak} days</h2>
-                    <p>You've been following the meal plan consistently for {streak} day(s).</p>
+            <div className="streak-info p-4 bg-gray-100 rounded-lg shadow-md">
+                <h2 className="text-2xl font-semibold text-gray-800">Streak: {streak} days</h2>
+                <div className="relative w-full h-4 bg-gray-300 rounded-full overflow-hidden mt-2">
+                    <div
+                        className="absolute top-0 left-0 h-full bg-green-500 transition-width duration-500"
+                        style={{ width: `${(streak / 30) * 100}%` }}
+                    ></div>
                 </div>
-            )}
+                <p className="mt-2 text-gray-600">{getMotivationalMessage()}</p>
+            </div>
         </div>
     );
 };

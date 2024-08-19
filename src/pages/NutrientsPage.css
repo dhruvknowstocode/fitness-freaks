@@ -213,3 +213,6 @@
 }
 
 
+.first:hover {
+    cursor: pointer;
+}
