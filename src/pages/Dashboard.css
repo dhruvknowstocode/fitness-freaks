@@ -1,0 +1,136 @@
+/* Dashboard Container */
+.dashboard-container {
+    background-color: #121212; /* Dark background for the entire page */
+    min-height: 100vh;
+    padding: 20px;
+    color: #e0e0e0; /* Light text color for contrast */
+}
+
+/* Header */
+.dashboard-header {
+    background-color: #1f1f1f; /* Darker background for the header */
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.header-title {
+    font-size: 2.5rem;
+    color: #ffffff; /* White text for better readability */
+    margin-bottom: 10px;
+    font-weight: 700; /* Bold heading */
+}
+
+.header-subtitle {
+    font-size: 1.125rem;
+    color: #b0b0b0; /* Light gray for subtitle */
+}
+
+/* Error Message */
+.error-message {
+    background-color: #d32f2f; /* Dark red background for error */
+    color: #ffffff;
+    border: 1px solid #b71c1c;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.error-title {
+    font-weight: bold;
+}
+
+/* Dashboard Content */
+.dashboard-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* User Info Section */
+.user-info {
+    background-color: #1f1f1f; /* Dark background for user info section */
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+}
+
+.user-name {
+    font-size: 1.75rem; /* Larger font size for user name */
+    color: #ffffff; /* White text for user name */
+    margin-bottom: 15px;
+    font-weight: 600; /* Semi-bold text */
+}
+
+/* User Streak Section */
+.user-streak {
+    background-color: #1f1f1f; /* Dark background for user streak section */
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+}
+
+.user-streak h2 {
+    font-size: 1.5rem; /* Heading size for user streak */
+    color: #ffffff; /* White text for heading */
+    margin-bottom: 15px;
+    font-weight: 600; /* Semi-bold text */
+}
+
+.user-streak p {
+    font-size: 1rem; /* Font size for paragraph text */
+    color: #e0e0e0; /* Light text color */
+    margin-bottom: 10px;
+}
+
+/* Goals Section */
+.goals-section {
+    background-color: #1f1f1f; /* Dark background for goals section */
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+}
+
+.goals-section h2 {
+    font-size: 1.5rem; /* Heading size for goals section */
+    color: #ffffff; /* White text for heading */
+    margin-bottom: 15px;
+    font-weight: 600; /* Semi-bold text */
+}
+
+.goals-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.goal-item {
+    background-color: #2c2c2c; /* Slightly lighter background for goal items */
+    border: 1px solid #3a3a3a;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.goal-title {
+    font-size: 1.25rem; /* Font size for goal title */
+    color: #ffffff; /* White text for goal title */
+    margin-bottom: 10px;
+    font-weight: 600; /* Semi-bold text */
+}
+
+.goal-description {
+    color: #b0b0b0; /* Light gray for description */
+    margin-bottom: 10px;
+}
+
+.goal-status.completed-status {
+    color: #4caf50; /* Green for completed status */
+}
+
+.goal-status.pending-status {
+    color: #f44336; /* Red for pending status */
+}

@@ -7,7 +7,6 @@ import Home from './pages/Home';
 import Contact from './pages/Contact';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
-import Pricing from './pages/Pricing';
 import GoalTracking from './pages/GoalTracking';
 import PrivateRoute from './components/PrivateRoute';
 import WorkoutPlans from './pages/WorkoutPlans';
@@ -15,6 +14,7 @@ import AllWorkoutPlans from './pages/AllWorkoutPlans';
 import NutrientsPage from './pages/NutrientsPage';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import TermsOfService from './pages/TermsOfService';
+import Dashboard from './pages/Dashboard'
 
 const App = () => (
   <>
@@ -26,11 +26,11 @@ const App = () => (
           <Route path="/contact" element={<Contact />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path="/pricing" element={<Pricing />} />
           <Route path="/all-plans" element={<AllWorkoutPlans />} />
           <Route path="/goal-tracking" element={<PrivateRoute element={GoalTracking} />} />
           <Route path="/workout-plans" element={<PrivateRoute element={WorkoutPlans} />} />
           <Route path="/nutrients" element={<PrivateRoute element={NutrientsPage} />} />
+          <Route path="/dashboard" element={<PrivateRoute element={Dashboard} />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/terms-of-service" element={<TermsOfService />} />
         </Routes>

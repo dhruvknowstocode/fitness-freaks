@@ -24,3 +24,16 @@ footer {
 main {
   flex-grow: 1;
 }
+
+/* Additional CSS for sticky header */
+header {
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 50; /* Ensure header is above other content */
+}
+
+/* Ensure body content is not hidden behind header */
+body {
+  padding-top: 4rem; /* Adjust based on header height */
+}

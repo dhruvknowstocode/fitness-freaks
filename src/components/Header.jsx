@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { FaBars, FaTimes } from 'react-icons/fa';
+import { FaBars, FaTimes, FaHome, FaUser, FaPhone } from 'react-icons/fa';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -39,7 +39,7 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-black text-white p-4 shadow-md">
+    <header className="bg-black text-white p-4 shadow-md fixed top-0 left-0 w-full z-50">
       <div className="container mx-auto flex items-center justify-between">
         {/* Site Title */}
         <Link to="/" className="text-3xl font-bold">
@@ -54,27 +54,27 @@ const Header = () => {
         </div>
 
         {/* Desktop Navigation */}
-        <nav className="hidden lg:flex flex-grow items-center justify-end space-x-6">
-          <Link to="/" className="text-white px-4 py-2 rounded hover:bg-gray-700 transition">
-            Home
+        <nav className="hidden lg:flex flex-grow items-center justify-end space-x-8">
+          <Link to="/" className="text-white text-lg font-semibold flex items-center hover:bg-gray-700 px-4 py-2 rounded transition">
+            <FaHome className="mr-2" /> Home
           </Link>
-          <Link to="/pricing" className="text-white px-4 py-2 rounded hover:bg-gray-700 transition">
-            Pricing
+          <Link to="/dashboard" className="text-white text-lg font-semibold flex items-center hover:bg-gray-700 px-4 py-2 rounded transition">
+            <FaUser className="mr-2" /> Dashboard
           </Link>
-          <Link to="/contact" className="text-white px-4 py-2 rounded hover:bg-gray-700 transition">
-            Contact
+          <Link to="/contact" className="text-white text-lg font-semibold flex items-center hover:bg-gray-700 px-4 py-2 rounded transition">
+            <FaPhone className="mr-2" /> Contact
           </Link>
           {isLoggedIn ? (
             <button
               onClick={handleLogout}
-              className="text-white px-4 py-2 rounded hover:bg-gray-700 transition"
+              className="text-white text-lg font-semibold flex items-center hover:bg-gray-700 px-4 py-2 rounded transition"
             >
               Logout
             </button>
           ) : (
             <button
               onClick={handleLoginRedirect}
-              className="text-white px-4 py-2 rounded hover:bg-gray-700 transition"
+              className="text-white text-lg font-semibold flex items-center hover:bg-gray-700 px-4 py-2 rounded transition"
             >
               Login
             </button>
@@ -90,18 +90,18 @@ const Header = () => {
             <nav className="mt-12 w-full">
               <ul className="flex flex-col space-y-6 items-center">
                 <li>
-                  <Link to="/" className="text-white text-2xl" onClick={toggleMenu}>
-                    Home
+                  <Link to="/" className="text-white text-2xl font-semibold flex items-center" onClick={toggleMenu}>
+                    <FaHome className="mr-2" /> Home
                   </Link>
                 </li>
                 <li>
-                  <Link to="/pricing" className="text-white text-2xl" onClick={toggleMenu}>
-                    Pricing
+                  <Link to="/dashboard" className="text-white text-2xl font-semibold flex items-center" onClick={toggleMenu}>
+                    <FaUser className="mr-2" /> Dashboard
                   </Link>
                 </li>
                 <li>
-                  <Link to="/contact" className="text-white text-2xl" onClick={toggleMenu}>
-                    Contact
+                  <Link to="/contact" className="text-white text-2xl font-semibold flex items-center" onClick={toggleMenu}>
+                    <FaPhone className="mr-2" /> Contact
                   </Link>
                 </li>
                 {isLoggedIn ? (
@@ -111,7 +111,7 @@ const Header = () => {
                         handleLogout();
                         toggleMenu();
                       }}
-                      className="text-white text-2xl"
+                      className="text-white text-2xl font-semibold flex items-center"
                     >
                       Logout
                     </button>
@@ -123,7 +123,7 @@ const Header = () => {
                         handleLoginRedirect();
                         toggleMenu();
                       }}
-                      className="text-white text-2xl"
+                      className="text-white text-2xl font-semibold flex items-center"
                     >
                       Login
                     </button>
