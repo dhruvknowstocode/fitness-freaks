@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const cron=require('node-cron');
 const bodyParser = require('body-parser');
 const User = require('./models/User');
 const Goal = require('./models/Goal');
@@ -33,6 +34,32 @@ main().then(() => {
 async function main() {
     await mongoose.connect(mongourl);
 }
+
+cron.schedule('0 0 * * *', async () => {
+    console.log('Running daily streak check...');
+
+    try {
+        const today = new Date().toISOString().split('T')[0];
+
+        // Get all users
+        const users = await User.find();
+
+        users.forEach(async (user) => {
+            const lastStreakDate = user.lastStreakDate ? user.lastStreakDate.toISOString().split('T')[0] : null;
+
+            // If the user's streak wasn't updated today, reset it to 0
+            if (lastStreakDate !== today) {
+                user.streak = 0;
+                await user.save();
+                console.log(`Streak reset for user ${user._id}`);
+            }
+        });
+
+        console.log('Daily streak check completed.');
+    } catch (error) {
+        console.error('Error during daily streak check:', error);
+    }
+});
 
 // Registration Route
 app.post('/api/auth/register', async (req, res) => {
