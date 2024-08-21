@@ -306,7 +306,7 @@ app.post('/update-streak/:userId', async (req, res) => {
         if (lastStreakDate === yesterday.toISOString().split('T')[0]) {
             user.streak += 1;
         } else {
-            user.streak = 0;  
+            user.streak = 1;  
         }
         user.lastStreakDate = new Date();
 
