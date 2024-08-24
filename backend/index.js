@@ -152,6 +152,7 @@ const verifyToken = async (req, res, next) => {
 
 // Get User Data Route
 // Route to get user data
+// Get User Data Route
 app.get('/api/user', verifyToken, async (req, res) => {
     try {
         // Find the user by the ID stored in req.user
@@ -161,9 +162,19 @@ app.get('/api/user', verifyToken, async (req, res) => {
             return res.status(404).json({ msg: 'User not found' });
         }
 
+        // Get the current date in ISO format (without time)
+        const today = new Date().toISOString().split('T')[0];
+        const lastStreakDate = user.lastStreakDate ? user.lastStreakDate.toISOString().split('T')[0] : null;
+
+        // Check if the streak should be reset
+        if (lastStreakDate !== today) {
+            user.streak = 0;
+            await user.save(); // Save the updated user with reset streak
+        }
+
         // Return the user data
         res.json({
-            _id:user._id,
+            _id: user._id,
             name: user.name,
             email: user.email,
             phoneNumber: user.phoneNumber,
