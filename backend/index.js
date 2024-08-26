@@ -35,31 +35,31 @@ async function main() {
     await mongoose.connect(mongourl);
 }
 
-cron.schedule('0 0 * * *', async () => {
-    console.log('Running daily streak check...');
+// cron.schedule('0 0 * * *', async () => {
+//     console.log('Running daily streak check...');
 
-    try {
-        const today = new Date().toISOString().split('T')[0];
+//     try {
+//         const today = new Date().toISOString().split('T')[0];
 
-        // Get all users
-        const users = await User.find();
+//         // Get all users
+//         const users = await User.find();
 
-        users.forEach(async (user) => {
-            const lastStreakDate = user.lastStreakDate ? user.lastStreakDate.toISOString().split('T')[0] : null;
+//         users.forEach(async (user) => {
+//             const lastStreakDate = user.lastStreakDate ? user.lastStreakDate.toISOString().split('T')[0] : null;
 
-            // If the user's streak wasn't updated today, reset it to 0
-            if (lastStreakDate !== today) {
-                user.streak = 0;
-                await user.save();
-                console.log(`Streak reset for user ${user._id}`);
-            }
-        });
+//             // If the user's streak wasn't updated today, reset it to 0
+//             if (lastStreakDate !== today) {
+//                 user.streak = 0;
+//                 await user.save();
+//                 console.log(`Streak reset for user ${user._id}`);
+//             }
+//         });
 
-        console.log('Daily streak check completed.');
-    } catch (error) {
-        console.error('Error during daily streak check:', error);
-    }
-});
+//         console.log('Daily streak check completed.');
+//     } catch (error) {
+//         console.error('Error during daily streak check:', error);
+//     }
+// });
 
 // Registration Route
 app.post('/api/auth/register', async (req, res) => {
@@ -162,12 +162,18 @@ app.get('/api/user', verifyToken, async (req, res) => {
             return res.status(404).json({ msg: 'User not found' });
         }
 
-        // Get the current date in ISO format (without time)
+        // Get the current date and previous day in ISO format (without time)
         const today = new Date().toISOString().split('T')[0];
+        const yesterday = new Date();
+        yesterday.setDate(yesterday.getDate() - 1);
+        const yesterdayDate = yesterday.toISOString().split('T')[0];
+
         const lastStreakDate = user.lastStreakDate ? user.lastStreakDate.toISOString().split('T')[0] : null;
 
+        console.log(`Today: ${today}, Last Streak Date: ${lastStreakDate}, Current Streak: ${user.streak}`);
+
         // Check if the streak should be reset
-        if (lastStreakDate !== today) {
+        if (lastStreakDate !== today && lastStreakDate !== yesterdayDate) {
             user.streak = 0;
             await user.save(); // Save the updated user with reset streak
         }
@@ -183,10 +189,11 @@ app.get('/api/user', verifyToken, async (req, res) => {
             maxStreak: user.maxStreak // Maximum streak achieved
         });
     } catch (err) {
-        console.error(err.message);
+        console.error('Error fetching user data:', err.message);
         res.status(500).send('Server error');
     }
 });
+
 
 app.post('/api/goals', verifyToken, async (req, res) => {
     const { title, description, completed = false } = req.body;
